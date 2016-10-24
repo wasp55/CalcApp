@@ -1,7 +1,7 @@
 package jp.techacademy.nanami.yeates.calcapp;
 
 import android.content.Intent;
-import android.icu.math.BigDecimal;
+
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText etNum1;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         EditText etNum1 = (EditText) findViewById(R.id.editText1);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 result = input1.multiply(input2);
                 break;
             case R.id.btnDiv:
-                result = input1.divide(input2);
+                result = input1.divide(input2,2,BigDecimal.ROUND_HALF_UP);
                 break;
             default:
                 break;
