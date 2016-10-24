@@ -14,9 +14,9 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         Intent intent = getIntent();
-        BigDecimal value = (BigDecimal) intent.getSerializableExtra("RESULT");
+        String result = intent.getStringExtra("VALUE");
 
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(String.valueOf(value));
+        textView.setText(result);
     }
 }
