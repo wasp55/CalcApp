@@ -50,10 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String str2 = etNum2.getText().toString();
 
         //数値に変換
+
         BigDecimal input1 = new BigDecimal(str1);
         BigDecimal input2 = new BigDecimal(str2);
+        BigDecimal result = new BigDecimal(0);
 
-        BigDecimal result;
 
         switch (v.getId()) {
             case R.id.btnAdd:
@@ -71,13 +72,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+
+
+        String str = result.toString();
+
         Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra("RESULT", result);
-
-        startActivity(intent);
-
+        intent.putExtra("VALUE", str);
+            startActivity(intent);
     }
 
 }
+
+
 
 
