@@ -1,14 +1,12 @@
 package jp.techacademy.nanami.yeates.calcapp;
 
 import android.content.Intent;
-
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import java.lang.String;
 import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText etNum1 = (EditText) findViewById(R.id.editText1);
         EditText etNum2 = (EditText) findViewById(R.id.editText2);
 
+
         //入力内容を取得
         String str1 = etNum1.getText().toString();
         String str2 = etNum2.getText().toString();
@@ -53,8 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         BigDecimal input1 = new BigDecimal(str1);
         BigDecimal input2 = new BigDecimal(str2);
-        BigDecimal result = new BigDecimal(0);
+        BigDecimal result = new BigDecimal(0.0);
 
+        if (etNum1.getText().toString().equals("")== false && etNum2.getText().toString().equals("")== false){
+            return;
+        }
 
         switch (v.getId()) {
             case R.id.btnAdd:
@@ -67,18 +69,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 result = input1.multiply(input2);
                 break;
             case R.id.btnDiv:
-                result = input1.divide(input2,2,BigDecimal.ROUND_HALF_UP);
+                try {
+                    result = input1.divide(input2, 11, BigDecimal.ROUND_HALF_UP);
+                } catch (ArithmeticException e) {
+                    etNum1.setText("0除算です。");
+                }
                 break;
             default:
                 break;
         }
 
-
         String str = result.toString();
 
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra("VALUE", str);
-            startActivity(intent);
+        startActivity(intent);
     }
 
 }
