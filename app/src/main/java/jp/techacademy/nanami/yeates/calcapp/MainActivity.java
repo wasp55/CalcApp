@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText etNum1 = (EditText) findViewById(R.id.editText1);
         EditText etNum2 = (EditText) findViewById(R.id.editText2);
 
-        if (etNum1.getText().toString().equals("")|| etNum2.getText().toString().equals("")== false){
+        if (etNum1.getText().toString().equals("")|| etNum2.getText().toString().equals("")== true){
             Toast.makeText(this, "数字を入れてください", Toast.LENGTH_LONG).show();
             return;
         }
@@ -77,9 +77,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     result = input1.divide(input2, 11, BigDecimal.ROUND_HALF_UP);
                 } catch (ArithmeticException e) {
-                    etNum1.setText("0除算です。");
+                    Toast.makeText(this,"0除算です。", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 break;
+
             default:
                 break;
         }
