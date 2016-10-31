@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.lang.String;
 import java.math.BigDecimal;
 
@@ -43,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText etNum1 = (EditText) findViewById(R.id.editText1);
         EditText etNum2 = (EditText) findViewById(R.id.editText2);
 
+        if (etNum1.getText().toString().equals("")|| etNum2.getText().toString().equals("")== false){
+            Toast.makeText(this, "数字を入れてください", Toast.LENGTH_LONG).show();
+            return;
+        }
+
 
         //入力内容を取得
         String str1 = etNum1.getText().toString();
@@ -54,9 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         BigDecimal input2 = new BigDecimal(str2);
         BigDecimal result = new BigDecimal(0.0);
 
-        if (etNum1.getText().toString().equals("")== false && etNum2.getText().toString().equals("")== false){
-            return;
-        }
+
 
         switch (v.getId()) {
             case R.id.btnAdd:
